@@ -1,0 +1,10 @@
+name The STABLE Zombie Server! [TEST]
+motd Oh, -hax guys. Enjoy.
+port 27016
+max_players 16
+heartbeat 1
+public 1
+verify 1
+backup_time 10
+hacks 1
+map zombiemap

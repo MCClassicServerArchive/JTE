@@ -1,0 +1,21 @@
+# Server name
+name &cJTE&4's Ultimate Spleef Server
+# Server message
+motd Programmed by &cThe Echidna Tribe
+# Port, number of players..
+port 27015
+max-players 8
+# 0 to not send a heartbeat
+# (connect by IP URL)
+heartbeat 1
+# 1 for it to be listed
+# Automatically 0 if heartbeat is 0.
+public 1
+# Verify names
+# Automatically 0 if heartbeat is 0.
+verify 1
+# Maximum number of concurrent connections by IP
+max-connections 1
+# Maps to load
+idle_map 16sky/stairs
+game_map 16sky/grass
