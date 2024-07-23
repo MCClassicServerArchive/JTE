@@ -4,11 +4,11 @@ use strict;
 use IO::Socket;
 use IO::Select;
 use Time::HiRes qw( time );
-require 'heartbeat.pl';
-require 'packet.pl';
-require 'map.pl';
-require 'command.pl';
-require 'serverinfo.pl';
+require './heartbeat.pl';
+require './packet.pl';
+require './map.pl';
+require './command.pl';
+require './serverinfo.pl';
 
 # This program was originally written by The Echidna Tribe (JTE@KidRadd.org)
 
@@ -191,8 +191,9 @@ sub main() {
 				$server{'socketset'}->remove($sock);
 				$sock->close();
 			}
-			my $buffer;
-			unless ($sock->recv($buffer,0xFFFF)) { die unless defined($id); &handle_disconnect($id); next; }
+			my $buffer = '';
+            my $received = $sock->recv($buffer,0xFFFF);
+			unless (defined($received) && length($buffer) != 0) { die unless defined($id); &handle_disconnect($id); next; }
 			if ($server{'clear_messages'}) { $server{'users'}[$id]{'buffer'} = ''; }
 			else { $server{'users'}[$id]{'buffer'} = &handle_packet($id,($server{'users'}[$id]{'buffer'}||'').$buffer); }
 		}

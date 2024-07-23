@@ -61,6 +61,7 @@ sub heartbeat() {
 	$info .= "&public=$public";
 	$info .= "&version=$server{'info'}{'version'}";
 	$info .= "&salt=$server{'info'}{'salt'}";
+    $info .= "&software=JTE Freebuild";
 
 	# Connect!
 	my $sock = Net::HTTP->new(
