@@ -20,9 +20,9 @@ sub heartbeat() {
 		my $ip = '127.0.0.1';
 		# Attempt to get IP address from www.EchidnaTribe.org/ip.php in order to generate a proper URL.
 		# Don't worry, it's safe. It'll just go back to 127.0.0.1 if for any reason this fails.
-		my $sock = Net::HTTP->new(Host => "www.classicube.net");
+		my $sock = Net::HTTP->new(Host => "www.echidnatribe.org");
 		return &ip_url($ip) unless ($sock); # Couldn't connect (Website down or dead)
-		$sock->write_request('GET', "/api/myip/");
+		$sock->write_request('GET', "/ip.php");
 		my $code = $sock->read_response_headers();
 		return &ip_url($ip) unless ($code == 200); # Didn't get an OK (Probably a 404 or something)
 		# Read in the page...
@@ -64,12 +64,12 @@ sub heartbeat() {
 
 	# Connect!
 	my $sock = Net::HTTP->new(
-		Host => "www.classicube.net",
+		Host => "www.minecraft.net",
 		KeepAlive => 1,
 		MaxLineLength => 0,
 		MaxHeaderLines => 0
 	);
-	unless ($sock) { die ("Could not connect to classicube.net: $@\n") if ($first); return; }
+	unless ($sock) { die ("Could not connect to minecraft.net: $@\n") if ($first); return; }
 
 	# Write our request
 	$sock->write_request('POST', "/heartbeat.jsp", (
